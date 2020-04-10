@@ -80,7 +80,6 @@ void craps_ui::updateUI(bool bGameWon) {
 		ui.rollButton->setText("Ran out of Money!");
 	}
 
-	// gets the amount of wins, losses and bank amount:
 	int amountWins = userOne.getWins();
 	int amountLosses = userOne.getLosses();
 	float bankAmount = userOne.getBank();

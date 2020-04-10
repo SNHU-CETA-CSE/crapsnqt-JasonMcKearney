@@ -1,76 +1,35 @@
-//
-// Created by Arana Fireheart on 1/30/20.
-//
+#include "Die.h"
+#include <iostream>
+#include <ctime>
 
-#include "die.h"
+Die::Die(int iStartingNumberOfSides, int iStartingValue = 1) {
+	m_numberOfSides = iStartingNumberOfSides;
+	m_startingValue = iStartingValue;
+	int m_rollAmount;
+}
 
-Die :: Die(int openingNumberOfSides, int openingStartingValue, int openingIncrement, std::string openingColor, std::string openingName) {
-    numberOfSides = openingNumberOfSides;
-    startingValue = openingStartingValue;
-    setIncrement(openingIncrement);
-    color = openingColor;
-    name = openingName;
-    value = 6;
-    srand((unsigned int)time(NULL));    // Seed the random number generator.
+void Die::roll() {
+	// Equation for rolling a dice:
+	srand(time(NULL));
+	m_rollAmount = rand() % m_numberOfSides + m_startingValue;
 }
-std::string Die::stringRep() {
-    char buffer[100];
-    int numberOfCharacters = 0;
 
-    const char *format = "Die named %s has %i sides, starts at %i increments by %i and has a current value of %i";
-    numberOfCharacters = std::snprintf(buffer, 100, format, name.c_str(), numberOfSides, startingValue, increment, value);
-    if (numberOfCharacters > 0 && numberOfCharacters < 100 ) {
-        std::string returnString(buffer, numberOfCharacters);
-        return returnString;
-    }
-    else
-        return "";
+int Die::getRollAmount() {
+	return m_rollAmount;
 }
-int Die::roll() {
-    value = ((rand() % numberOfSides) * increment + startingValue);
-    return value;
+
+void Die::setNumberOfSides(int iNewNumSides) {
+	m_numberOfSides = iNewNumSides;
 }
-void Die::setValue(int newValue) {
-    // Test for a value within range and a multiple of the increment.
-    if (startingValue * increment <= newValue <= numberOfSides * increment and not newValue % increment)
-        value = newValue;
-    else
-        throw BadDieValueException();
-}
-int Die::getValue() {
-    return value;
-}
-void Die::setNumberOfSides(int newNumberOfSides) {
-    numberOfSides = newNumberOfSides;
-}
+
 int Die::getNumberOfSides() {
-    return numberOfSides;
+	return m_numberOfSides;
 }
-void Die::setStartingValue(int newStartingValue) {
-    startingValue = newStartingValue;
+
+void Die::setStartingValue(int iNewStartingValue) {
+	m_startingValue = iNewStartingValue;
 }
+
 int Die::getStartingValue() {
-    return startingValue;
-}
-void Die::setIncrement(int newIncrement) {
-    if (newIncrement > 0 && newIncrement == 1) // Increment must be at least 1.
-        increment = newIncrement;
-    else
-        increment = newIncrement;
-    startingValue = newIncrement;           // startingValue can't be less that the increment.
-}
-int Die::getIncrement() {
-    return increment;
-}
-void Die::setColor(std::string newColor) {
-    color = newColor;
-}
-std::string Die::getColor() {
-    return color;
-}
-void Die::setName(std::string newName) {
-    name = newName;
-}
-std::string Die::getName() {
-    return name;
+	return m_startingValue;
 }
