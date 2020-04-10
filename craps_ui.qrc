@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/craps_ui">
+        <file>dieImages/1Face.png</file>
+        <file>dieImages/2Face.png</file>
+        <file>dieImages/3Face.png</file>
+        <file>dieImages/4Face.png</file>
+        <file>dieImages/5Face.png</file>
+        <file>dieImages/6Face.png</file>
+    </qresource>
+</RCC>
