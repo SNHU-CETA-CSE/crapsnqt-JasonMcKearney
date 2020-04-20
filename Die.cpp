@@ -10,7 +10,6 @@ Die::Die(int iStartingNumberOfSides, int iStartingValue = 1) {
 
 void Die::roll() {
 	// Equation for rolling a dice:
-	srand(time(NULL));
 	m_rollAmount = rand() % m_numberOfSides + m_startingValue;
 }
 
